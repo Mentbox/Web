@@ -14,9 +14,11 @@
     "@stackflow/plugin-basic-ui": "^1.14.0",
     "@stackflow/plugin-renderer-basic": "^1.1.13",
     "@stackflow/react": "^1.5.1",
+    "@tailwindcss/vite": "^4.1.5",
     "@tanstack/react-query": "^5.75.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "tailwindcss": "^4.1.5",
     "zustand": "^5.0.4"
   },
   "devDependencies": {

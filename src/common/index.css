@@ -1,8 +1,73 @@
 @import "tailwindcss";
 
+@theme {
+  --color-gray-50: #f3f3f3;
+  --color-gray-100: #d8d8d8;
+  --color-gray-200: #c6c6c6;
+  --color-gray-300: #ababab;
+  --color-gray-400: #9b9b9b;
+  --color-gray-500: #828282;
+  --color-gray-600: #767676;
+  --color-gray-700: #5c5c5c;
+  --color-gray-800: #484848;
+  --color-gray-900: #373737;
+
+  --color-green-50: #e9fbf3;
+  --color-green-75: #a3efcc;
+  --color-green-100: #7de9b7;
+  --color-green-200: #44df97;
+  --color-green-300: #1ed982;
+  --color-green-400: #15985b;
+  --color-green-500: #12844f;
+
+  --color-blue-50: #edf1ff;
+  --color-blue-75: #b6c7ff;
+  --color-blue-100: #98b0ff;
+  --color-blue-200: #6c8eff;
+  --color-blue-300: #4e77ff;
+  --color-blue-400: #3753b3;
+  --color-blue-500: #30499c;
+
+  --color-primary: #4e77ff;
+  --color-secondary: #1ed982;
+  --color-negative: #f60a0a;
+}
+
 body {
   font-family: "Pretendard Variable", Pretendard, -apple-system,
     BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
     "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+div,
+span,
+p {
+  @apply break-keep whitespace-pre-wrap;
+}
+
+.title {
+  @apply font-bold text-[2rem] leading-[1.25]; /* 32px */
+}
+
+.h1 {
+  @apply font-semibold text-[1.5rem] leading-[1.15]; /* 24px */
+}
+
+.b1 {
+  @apply font-medium text-[1.125rem] leading-[1.05]; /* 18px */
+}
+
+.label {
+  @apply font-normal text-[0.875rem] leading-[1]; /* 14px */
+}
+
+.caption {
+  @apply font-normal text-[0.75rem] leading-[1]; /* 12px */
 }

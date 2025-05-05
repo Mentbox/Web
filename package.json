@@ -16,6 +16,8 @@
     "@stackflow/react": "^1.5.1",
     "@tailwindcss/vite": "^4.1.5",
     "@tanstack/react-query": "^5.75.2",
+    "motion": "^12.9.4",
+    "overlay-kit": "^1.8.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-error-boundary": "^6.0.0",

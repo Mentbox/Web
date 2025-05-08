@@ -54,6 +54,10 @@ p {
   @apply break-keep whitespace-pre-wrap;
 }
 
+button {
+  @apply cursor-pointer;
+}
+
 .title {
   @apply font-bold text-[2rem] leading-[1.25]; /* 32px */
 }

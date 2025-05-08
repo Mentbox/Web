@@ -31,6 +31,8 @@
   --color-primary: #4e77ff;
   --color-secondary: #1ed982;
   --color-negative: #f60a0a;
+
+  --shadow-white: 0px 0px 4px 0px #00000014;
 }
 
 body {

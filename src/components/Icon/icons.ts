@@ -1,2 +1,11 @@
 export { default as chevronLeft } from "@icons/chevron-left.svg?react";
 export { default as edit } from "@icons/edit.svg?react";
+export { default as 공모전 } from "@icons/공모전.svg?react";
+export { default as 대학생 } from "@icons/대학생.svg?react";
+export { default as 동아리 } from "@icons/동아리.svg?react";
+export { default as 면접 } from "@icons/면접.svg?react";
+export { default as 이직러 } from "@icons/이직러.svg?react";
+export { default as 직장인 } from "@icons/직장인.svg?react";
+export { default as 취준 } from "@icons/취준.svg?react";
+export { default as 팀플 } from "@icons/팀플.svg?react";
+export { default as 프로젝트 } from "@icons/프로젝트.svg?react";

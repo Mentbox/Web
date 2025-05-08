@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import getTheme from "../common/styles/theme";
 import ProfileImageUploader from "../features/user/modules/ProfileImageUploader";
 import ProfileNameForm from "../features/user/modules/ProfileNameForm";
+import ProfileInterestsSelector from "../features/user/modules/ProfileInterestsSelector";
 
 const ProfileScreen: ActivityComponentType = () => {
   const theme = getTheme();
@@ -16,6 +17,8 @@ const ProfileScreen: ActivityComponentType = () => {
         <ProfileImageUploader />
 
         <ProfileNameForm />
+
+        <ProfileInterestsSelector />
       </main>
     </AppScreen>
   );

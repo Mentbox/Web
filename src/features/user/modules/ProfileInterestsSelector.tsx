@@ -1,43 +1,35 @@
-import { useState } from "react";
 import ProfileInterestItem from "./ProfileInterestItem";
+import { IInterest, interestOptions } from "../common/user";
 
-const interests = [
-  { label: "취준", value: "취준" },
-  { label: "팀플", value: "팀플" },
-  { label: "프로젝트", value: "프로젝트" },
-  { label: "직장인", value: "직장인" },
-  { label: "대학생", value: "대학생" },
-  { label: "동아리", value: "동아리" },
-  { label: "면접", value: "면접" },
-  { label: "공모전", value: "공모전" },
-  { label: "이직러", value: "이직러" },
-] as const;
+type Props = {
+  interests: IInterest[];
+  setInterests: (interests: IInterest[]) => void;
+};
 
-function ProfileInterestsSelector() {
-  const [selected, setSelected] = useState<string[]>([]);
-
+function ProfileInterestsSelector({ interests, setInterests }: Props) {
   return (
     <section className="flex flex-col gap-[12px]">
       <h1 className="b1">관심사</h1>
+
       <div className="flex flex-wrap gap-[8px]">
-        {interests.map(({ label, value }) => {
-          const isSelected = selected.includes(value);
+        {interestOptions.map((interest) => {
+          const isSelected = interests.includes(interest);
 
           const toggle = () => {
             if (isSelected)
-              setSelected((prev) => prev.filter((i) => i !== value));
+              setInterests(interests.filter((i) => i !== interest));
             else {
-              setSelected((prev) => [...prev, value]);
+              setInterests([...interests, interest]);
             }
           };
 
           return (
             <ProfileInterestItem
-              label={label}
-              value={value}
+              label={interest}
+              value={interest}
               onClick={toggle}
               isSelected={isSelected}
-              key={`k_interest_${value}`}
+              key={`k_interest_${interest}`}
             />
           );
         })}

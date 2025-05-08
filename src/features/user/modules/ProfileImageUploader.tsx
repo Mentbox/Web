@@ -4,14 +4,18 @@ import Icon from "../../../components/Icon";
 import { overlay } from "overlay-kit";
 import ProfileImageUploadBottomSheet from "./ProfileImageUploadBottomSheet";
 
-function ProfileImageUploader() {
+type Props = {
+  image: File | null;
+  setImage: (image: File | null) => void;
+};
+
+function ProfileImageUploader({ image, setImage }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [preview, setPreview] = useState("");
-  const [file, setFile] = useState<File | undefined>(undefined);
 
   useEffect(() => {
     // load preview image by change file
-    if (!file) return setPreview("");
+    if (!image) return setPreview("");
 
     const reader = new FileReader();
 
@@ -22,10 +26,10 @@ function ProfileImageUploader() {
       }
     };
 
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(image);
 
     return () => reader.abort();
-  }, [file]);
+  }, [image]);
 
   const handleClick = () => {
     overlay.open(({ isOpen, close, unmount }) => (
@@ -34,7 +38,7 @@ function ProfileImageUploader() {
         close={close}
         onExit={unmount}
         inputRef={inputRef}
-        clear={() => setFile(undefined)}
+        clear={() => setImage(null)}
       />
     ));
   };
@@ -42,7 +46,9 @@ function ProfileImageUploader() {
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     const file = e.target.files?.[0];
 
-    setFile(file);
+    if (!file) return;
+
+    setImage(file);
   };
 
   return (
@@ -57,7 +63,7 @@ function ProfileImageUploader() {
 
       <button onClick={handleClick} className="relative">
         <img
-          src={file ? preview : DefaultProfileImg}
+          src={image ? preview : DefaultProfileImg}
           alt="profile image"
           className="aspect-square w-[80px] object-cover rounded-full shadow-white"
         />

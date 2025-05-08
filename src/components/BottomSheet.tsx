@@ -1,29 +1,19 @@
-import { AnimatePresence, motion, TargetAndTransition } from "motion/react";
-import { useEffect } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import React, { useEffect } from "react";
 
 type Props = React.PropsWithChildren<{
   isOpen: boolean;
   close: () => void;
   onExit: () => void;
   className?: string;
-  animationConfig?: {
-    initial: TargetAndTransition;
-    animate: TargetAndTransition;
-    exit: TargetAndTransition;
-  };
 }>;
 
 const DURATION = 150 / 1000;
 
-function Modal({
-  isOpen,
-  close,
-  onExit,
-  className,
-  animationConfig,
-  children,
-}: Props) {
-  const handleBackdropClick = () => close();
+function BottomSheet({ isOpen, close, onExit, className, children }: Props) {
+  const handleBackdropClick = () => {
+    close();
+  };
 
   useEffect(() => {
     return () => {
@@ -43,12 +33,12 @@ function Modal({
           transition={{
             duration: DURATION,
           }}
-          className="z-50 fixed inset-0 bg-black/20 flex flex-col justify-center px-5"
+          className="z-50 fixed inset-0 bg-black/20 flex flex-col justify-end"
         >
           <motion.section
-            initial={animationConfig?.initial ?? { opacity: 0 }}
-            animate={animationConfig?.animate ?? { opacity: 1 }}
-            exit={animationConfig?.exit ?? { opacity: 0 }}
+            initial={{ opacity: 0, y: 300 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 300 }}
             transition={{
               duration: DURATION,
             }}
@@ -63,4 +53,4 @@ function Modal({
   );
 }
 
-export default Modal;
+export default BottomSheet;

@@ -6,20 +6,20 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & {
   success?: { condition: boolean; message: string };
 };
 
+const themeClassNameMap: Record<InputTheme, string> = {
+  gray: "bg-gray-50 border-transparent",
+  white: "bg-white border-transparent shadow-white",
+};
+
+const statusClassNameMap: Record<
+  "error" | "success",
+  { input: string; caption: string }
+> = {
+  error: { input: "border-negative!", caption: "text-negative" },
+  success: { input: "border-green-300!", caption: "text-green-300" },
+};
+
 function Input({ theme = "gray", error, success, ...rest }: Props) {
-  const themeClassNameMap: Record<InputTheme, string> = {
-    gray: "bg-gray-50 border-transparent",
-    white: "bg-white border-transparent shadow-white",
-  };
-
-  const statusClassNameMap: Record<
-    "error" | "success",
-    { input: string; caption: string }
-  > = {
-    error: { input: "border-negative!", caption: "text-negative" },
-    success: { input: "border-green-300!", caption: "text-green-300" },
-  };
-
   const status = (() => {
     if (error?.condition) return "error";
     if (success?.condition) return "success";

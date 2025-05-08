@@ -4,7 +4,7 @@ import { useEffect } from "react";
 type Props = React.PropsWithChildren<{
   isOpen: boolean;
   close: () => void;
-  unmount: () => void;
+  onExit: () => void;
   className?: string;
   animationConfig?: {
     initial: TargetAndTransition;
@@ -13,22 +13,22 @@ type Props = React.PropsWithChildren<{
   };
 }>;
 
+const DURATION = 150 / 1000;
+
 function Modal({
   isOpen,
   close,
-  unmount,
+  onExit,
   className,
   animationConfig,
   children,
 }: Props) {
   const handleBackdropClick = () => close();
 
-  const DURATION = 150 / 1000;
-
   useEffect(() => {
     return () => {
       if (import.meta.env.DEV) return; // prevent clean up by using strict mode.
-      unmount();
+      onExit();
     };
   }, []);
 

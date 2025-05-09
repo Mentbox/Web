@@ -71,7 +71,7 @@ button {
 }
 
 .label {
-  @apply font-normal text-[0.875rem] leading-[1]; /* 14px */
+  @apply font-normal text-[0.875rem] leading-[1.5]; /* 14px */
 }
 
 .caption {

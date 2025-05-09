@@ -1,11 +1,13 @@
 import { overlay } from "overlay-kit";
-import { useState } from "react";
 import WriteFileCalendarModal from "./WriteFileCalendarModal";
 import DateUtil from "../../../utils/DateUtils";
 
-function WriteFileDateSelector() {
-  const [date, setDate] = useState<Date | null>(null);
+type Props = {
+  date: Date | null;
+  setDate: (date: Date) => void;
+};
 
+function WriteFileDateSelector({ date, setDate }: Props) {
   const handleClick = () => {
     overlay.open(({ isOpen, close, unmount }) => (
       <WriteFileCalendarModal

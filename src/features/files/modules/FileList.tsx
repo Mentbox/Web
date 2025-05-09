@@ -1,14 +1,18 @@
+import withAsyncBoundary from "../../core/modules/AsyncBoundary/hoc";
+import useFilesSuspenseQuery from "../hooks/queries/useFilesSuspenseQuery";
+
 import FileCard from "./FileCard";
 
 function FileList() {
+  const { files } = useFilesSuspenseQuery();
+
   return (
     <div className="flex flex-col gap-[12px] p-[16px]">
-      <FileCard />
-      <FileCard />
-      <FileCard />
-      <FileCard />
+      {files.map((file) => (
+        <FileCard file={file} key={file.id} />
+      ))}
     </div>
   );
 }
 
-export default FileList;
+export default withAsyncBoundary(FileList);

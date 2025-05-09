@@ -9,3 +9,4 @@ export { default as 직장인 } from "@icons/직장인.svg?react";
 export { default as 취준 } from "@icons/취준.svg?react";
 export { default as 팀플 } from "@icons/팀플.svg?react";
 export { default as 프로젝트 } from "@icons/프로젝트.svg?react";
+export { default as chevronRight } from "@icons/chevron-right.svg?react";

@@ -3,8 +3,15 @@ import { useRouter } from "../../../app/_root";
 import Icon from "../../../components/Icon";
 import OutsideClickHandler from "react-outside-click-handler";
 import useDialog from "../../core/hooks/useDialog";
+import { IFile } from "../common/types";
+import DateUtil from "../../../utils/DateUtils";
 
-function FileCard() {
+type Props = {
+  file: IFile;
+};
+
+function FileCard({ file }: Props) {
+  const { id, title, targetDate } = file;
   const { showDialog } = useDialog();
   const { push } = useRouter();
 
@@ -12,11 +19,8 @@ function FileCard() {
   const openMenu = () => setVisibleMenu(true);
   const closeMenu = () => setVisibleMenu(false);
 
-  const title =
-    "매우긴 내용매우긴 내용매우긴 내용매우긴 내용매우긴 내용매우긴 내용매우긴 내용매우긴 내용매우긴 내용매우긴 내용";
-
   const handleClick = () => {
-    push("FileDetailsScreen", { fileId: 1 });
+    push("FileDetailsScreen", { fileId: id });
   };
 
   const handleMenuClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
@@ -51,7 +55,9 @@ function FileCard() {
           <h1 className="whitespace-nowrap! text-ellipsis b1 overflow-hidden">
             {title}
           </h1>
-          <div className="caption text-gray-500">0000.00.00</div>
+          <div className="caption text-gray-500">
+            {DateUtil.formatDot(targetDate)}
+          </div>
         </div>
 
         <button

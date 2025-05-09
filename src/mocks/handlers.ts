@@ -1,9 +1,3 @@
-import { http, HttpResponse } from "msw";
+import { files } from "./files";
 
-const END_POINT = import.meta.env.VITE_API_END_POINT;
-
-export const handlers = [
-  http.get(`${END_POINT}/`, () => {
-    return HttpResponse.json("hello world");
-  }),
-];
+export const handlers = [...files];

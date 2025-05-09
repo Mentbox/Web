@@ -5,12 +5,14 @@ import { basicUIPlugin } from "@stackflow/plugin-basic-ui";
 import HomeScreen from "./home";
 import { historySyncPlugin } from "@stackflow/plugin-history-sync";
 import ProfileScreen from "./profile";
+import LoginScreen from "./login";
 
 export const { Stack, useFlow } = stackflow({
   transitionDuration: 350,
   activities: {
     HomeScreen,
     ProfileScreen,
+    LoginScreen,
   },
   initialActivity: () => "HomeScreen",
   plugins: [
@@ -22,6 +24,7 @@ export const { Stack, useFlow } = stackflow({
       routes: {
         HomeScreen: "/",
         ProfileScreen: "/profile",
+        LoginScreen: "/login",
       },
       fallbackActivity: () => "HomeScreen",
     }),

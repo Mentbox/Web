@@ -1,18 +1,25 @@
 import "@stackflow/plugin-basic-ui/index.css";
-import { stackflow } from "@stackflow/react";
+import { stackflow, useActions } from "@stackflow/react";
 import { basicRendererPlugin } from "@stackflow/plugin-renderer-basic";
 import { basicUIPlugin } from "@stackflow/plugin-basic-ui";
 import HomeScreen from "./home";
 import { historySyncPlugin } from "@stackflow/plugin-history-sync";
-import TestScreen from "./test";
+import FilesScreen from "./files";
+import WriteFileScreen from "./files/write";
 
-export const { Stack, useFlow } = stackflow({
+export type TypeActivities = typeof activities;
+
+export const useRouter = () => {
+  return useActions<TypeActivities>();
+};
+
+export const { Stack, activities } = stackflow({
   transitionDuration: 350,
   activities: {
     HomeScreen,
-    TestScreen,
+    FilesScreen,
+    WriteFileScreen,
   },
-  initialActivity: () => "HomeScreen",
   plugins: [
     basicRendererPlugin(),
     basicUIPlugin({
@@ -21,7 +28,8 @@ export const { Stack, useFlow } = stackflow({
     historySyncPlugin({
       routes: {
         HomeScreen: "/",
-        TestScreen: "/test",
+        FilesScreen: "/files",
+        WriteFileScreen: "/files/write",
       },
       fallbackActivity: () => "HomeScreen",
     }),

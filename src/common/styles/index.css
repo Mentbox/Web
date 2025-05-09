@@ -79,5 +79,5 @@ button {
 }
 
 .screen {
-  @apply h-full flex flex-col;
+  @apply h-full flex flex-col bg-gray-50;
 }

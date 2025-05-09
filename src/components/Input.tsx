@@ -7,8 +7,8 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & {
 };
 
 const themeClassNameMap: Record<InputTheme, string> = {
-  gray: "bg-gray-50 border-transparent",
-  white: "bg-white border-transparent shadow-white",
+  gray: "bg-gray-50 border-transparent b1",
+  white: "bg-white border-transparent shadow-white label",
 };
 
 const statusClassNameMap: Record<
@@ -33,7 +33,7 @@ function Input({ theme = "gray", error, success, ...rest }: Props) {
         {...rest}
         className={`${themeClassNameMap[theme]} ${
           status && statusClassNameMap[status].input
-        } h-[50px] py-[10px] px-[16px] rounded-[8px] outline-none b1 placeholder:text-gray-500 border`}
+        } h-[50px] py-[10px] px-[16px] rounded-[8px] outline-none placeholder:text-gray-500 border`}
       />
       {status && (
         <div className={`${statusClassNameMap[status].caption} label`}>

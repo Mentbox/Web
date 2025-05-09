@@ -9,6 +9,7 @@ import LoginScreen from "./SignIn/login";
 import AuthCallback from "./SignIn/auth";
 import FilesScreen from "./files";
 import WriteFileScreen from "./files/write";
+import FileDetailsScreen from "./files/[fileId]";
 
 export type TypeActivities = typeof activities;
 
@@ -25,6 +26,7 @@ export const { Stack, activities } = stackflow({
     AuthCallback,
     FilesScreen,
     WriteFileScreen,
+    FileDetailsScreen,
   },
   plugins: [
     basicRendererPlugin(),
@@ -39,6 +41,7 @@ export const { Stack, activities } = stackflow({
         AuthCallback: "/auth",
         FilesScreen: "/files",
         WriteFileScreen: "/files/write",
+        FileDetailsScreen: "/files/:fileId",
       },
       fallbackActivity: () => "HomeScreen",
     }),

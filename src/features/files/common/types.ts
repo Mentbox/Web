@@ -4,3 +4,16 @@ export type IMaterial = {
   keywords: string[];
   limitedTime: string;
 };
+
+export type CreateFileParams = {
+  title: string;
+  targetDate: string;
+  materials: IMaterial[];
+};
+
+export type IFile = {
+  id: number;
+  title: string;
+  targetDate: string;
+  materials: Array<IMaterial & { id: number }>;
+};

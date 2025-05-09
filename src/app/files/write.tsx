@@ -5,8 +5,17 @@ import WriteFileDateSelector from "../../features/files/modules/WriteFileDateSel
 import { useState } from "react";
 import WriteFileTitleForm from "../../features/files/modules/WriteFileTitleForm";
 import WriteFileMaterialList from "../../features/files/modules/WriteFileMaterialList";
+import useCreateFileMutation from "../../features/files/hooks/mutations/useCreateFileMutation";
+import DateUtil from "../../utils/DateUtils";
+import useToast from "../../features/core/hooks/useToast";
+import { useRouter } from "../_root";
 
 const WriteFileScreen: ActivityComponentType = () => {
+  const { pop } = useRouter();
+  const { showToast } = useToast();
+
+  const createFile = useCreateFileMutation();
+
   const [form, setForm] = useState<{
     title: string;
     date: Date | null;
@@ -21,12 +30,29 @@ const WriteFileScreen: ActivityComponentType = () => {
     date: null,
     materials: [],
   });
+  const disabled = !form.title || !form.date;
 
   const updateForm = <T extends keyof typeof form>(
     key: T,
     value: (typeof form)[T]
   ) => {
     setForm((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const handleConfirm = () => {
+    const { title, date, materials } = form;
+
+    if (!title || !date) return;
+
+    createFile(
+      { title, targetDate: DateUtil.format(date), materials },
+      {
+        onSuccess: () => {
+          showToast("파일을 만들었어요!");
+          pop();
+        },
+      }
+    );
   };
 
   return (
@@ -53,7 +79,13 @@ const WriteFileScreen: ActivityComponentType = () => {
 
         <section className="px-[16px] py-[16px] pb-[40px] flex flex-col">
           {/** @todo Btn 컴포넌트로 교체 */}
-          <button className="p-5 bg-primary">저장</button>
+          <button
+            onClick={handleConfirm}
+            disabled={disabled}
+            className="p-5 bg-primary"
+          >
+            저장
+          </button>
         </section>
       </div>
     </AppScreen>

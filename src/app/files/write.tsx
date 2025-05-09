@@ -3,6 +3,7 @@ import { ActivityComponentType } from "@stackflow/react";
 import Header from "../../components/Header";
 import WriteFileNameForm from "../../features/files/modules/WriteFileNameForm";
 import WriteFileDateSelector from "../../features/files/modules/WriteFileDateSelector";
+import WriteFileListList from "../../features/files/modules/WriteFileListList";
 
 const WriteFileScreen: ActivityComponentType = () => {
   return (
@@ -10,10 +11,12 @@ const WriteFileScreen: ActivityComponentType = () => {
       <div className="screen">
         <Header.Arrow title="파일 작성" />
 
-        <main className="flex-1 flex flex-col gap-[24px] p-[16px]">
+        <main className="flex-1 flex flex-col gap-[24px] p-[16px] overflow-y-scroll">
           <WriteFileNameForm />
 
           <WriteFileDateSelector />
+
+          <WriteFileListList />
         </main>
 
         <section className="px-[16px] py-[16px] pb-[40px] flex flex-col">

@@ -6,11 +6,15 @@ import ProfileImageUploader from "../features/user/modules/ProfileImageUploader"
 import ProfileNameForm from "../features/user/modules/ProfileNameForm";
 import ProfileInterestsSelector from "../features/user/modules/ProfileInterestsSelector";
 import { useState } from "react";
-import { IInterest } from "../features/user/common/user";
+import { IInterest } from "../features/user/common/unit";
+import useUpdateProfileMutation from "../features/user/hooks/mutations/useUpdateProfileMutation";
 
 const ProfileScreen: ActivityComponentType = () => {
   const theme = getTheme();
 
+  const updateProfile = useUpdateProfileMutation();
+
+  /** @todo user initial 추가 */
   const [form, setForm] = useState<{
     image: File | null;
     name: string;
@@ -20,12 +24,17 @@ const ProfileScreen: ActivityComponentType = () => {
     name: "",
     interests: [],
   });
+  const disabled = !form.name;
 
   const updateForm = <T extends keyof typeof form>(
     key: T,
     value: (typeof form)[T]
   ) => {
     setForm((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const handleConfirm = () => {
+    updateProfile(form);
   };
 
   return (
@@ -50,7 +59,14 @@ const ProfileScreen: ActivityComponentType = () => {
           />
         </main>
 
-        <button className="bg-blue-75">저장</button>
+        {/** @todo Btn 컴포넌트로 교체 */}
+        <button
+          onClick={handleConfirm}
+          disabled={disabled}
+          className="bg-blue-75 p-5"
+        >
+          저장
+        </button>
       </div>
     </AppScreen>
   );

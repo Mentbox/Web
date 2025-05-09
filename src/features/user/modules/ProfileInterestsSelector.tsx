@@ -1,5 +1,5 @@
 import ProfileInterestItem from "./ProfileInterestItem";
-import { IInterest, interestOptions } from "../common/user";
+import { IInterest, interestOptions } from "../common/unit";
 
 type Props = {
   interests: IInterest[];

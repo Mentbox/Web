@@ -5,7 +5,8 @@ import { basicUIPlugin } from "@stackflow/plugin-basic-ui";
 import HomeScreen from "./home";
 import { historySyncPlugin } from "@stackflow/plugin-history-sync";
 import ProfileScreen from "./profile";
-import LoginScreen from "./login";
+import LoginScreen from "./SignIn/login";
+import AuthCallback from "./SignIn/auth";
 
 export const { Stack, useFlow } = stackflow({
   transitionDuration: 350,
@@ -13,6 +14,7 @@ export const { Stack, useFlow } = stackflow({
     HomeScreen,
     ProfileScreen,
     LoginScreen,
+    AuthCallback,
   },
   initialActivity: () => "HomeScreen",
   plugins: [
@@ -25,6 +27,7 @@ export const { Stack, useFlow } = stackflow({
         HomeScreen: "/",
         ProfileScreen: "/profile",
         LoginScreen: "/login",
+        AuthCallback: "/auth",
       },
       fallbackActivity: () => "HomeScreen",
     }),

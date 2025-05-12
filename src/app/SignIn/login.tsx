@@ -1,13 +1,15 @@
 import { AppScreen } from "@stackflow/plugin-basic-ui";
 import { ActivityComponentType } from "@stackflow/react";
-import getTheme from "../common/styles/theme";
+import getTheme from "../../common/styles/theme";
 import kakao from "@icons/kakao.svg";
 import apple from "@icons/apple.svg";
-import Logo from "../components/Logo";
-import LoginButton from "../components/LoginButton";
+import Logo from "../../components/Logo";
+import LoginButton from "../../components/LoginButton";
 
 const LoginScreen: ActivityComponentType = () => {
   const theme = getTheme();
+
+  // 카카오 로그인
   const SocialKakao = () => {
     const Rest_api_key = "28eefe2f218e99fd6fa2d3f6af03169c"; // REST API KEY
     const redirect_uri = "http://localhost:5173/auth"; // Redirect URI
@@ -16,6 +18,7 @@ const LoginScreen: ActivityComponentType = () => {
     const handleLogin = () => {
       window.location.href = kakaoURL;
     };
+
     return (
       <>
         <LoginButton src={kakao} color="#FEE500" onClick={handleLogin}>

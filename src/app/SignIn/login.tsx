@@ -11,7 +11,7 @@ const LoginScreen: ActivityComponentType = () => {
 
   // 카카오 로그인
   const SocialKakao = () => {
-    const Rest_api_key = "28eefe2f218e99fd6fa2d3f6af03169c"; // REST API KEY
+    const Rest_api_key = import.meta.env.VITE_KAKAO_REST_API_KEY; // REST API KEY
     const redirect_uri = "http://localhost:5173/auth"; // Redirect URI
     // oauth 요청 URL
     const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`;

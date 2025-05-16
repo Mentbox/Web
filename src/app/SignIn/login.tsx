@@ -1,10 +1,9 @@
 import { AppScreen } from "@stackflow/plugin-basic-ui";
 import { ActivityComponentType } from "@stackflow/react";
 import getTheme from "../../common/styles/theme";
-import apple from "@icons/apple.svg";
 import Logo from "../../components/Logo";
-import LoginButton from "../../components/LoginButton";
 import SocialKakao from "./SocialKakao";
+import SocialApple from "./SocialApple";
 
 const LoginScreen: ActivityComponentType = () => {
   const theme = getTheme();
@@ -18,9 +17,7 @@ const LoginScreen: ActivityComponentType = () => {
         </div>
         <main className="flex flex-col gap-[24px]">
           <SocialKakao />
-          <LoginButton src={apple} color="#000000">
-            Apple로 로그인
-          </LoginButton>
+          <SocialApple />
         </main>
       </div>
     </AppScreen>

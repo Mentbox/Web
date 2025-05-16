@@ -1,35 +1,13 @@
 import { AppScreen } from "@stackflow/plugin-basic-ui";
 import { ActivityComponentType } from "@stackflow/react";
 import getTheme from "../../common/styles/theme";
-import kakao from "@icons/kakao.svg";
 import apple from "@icons/apple.svg";
 import Logo from "../../components/Logo";
 import LoginButton from "../../components/LoginButton";
+import SocialKakao from "./SocialKakao";
 
 const LoginScreen: ActivityComponentType = () => {
   const theme = getTheme();
-
-  // 카카오 로그인
-  const SocialKakao = () => {
-    const Rest_api_key = import.meta.env.VITE_KAKAO_REST_API_KEY; // REST API KEY
-    const redirect_uri = "http://localhost:5173/auth"; // Redirect URI
-    // oauth 요청 URL
-    const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`;
-    const handleLogin = () => {
-      window.location.href = kakaoURL;
-    };
-
-    return (
-      <>
-        <LoginButton src={kakao} color="#FEE500" onClick={handleLogin}>
-          카카오 로그인
-        </LoginButton>
-      </>
-    );
-  };
-
-  // RedirectURI로 설정해 둔 localhost:3000/auth?code= 로 인가코드가 들어오는 것을 확인할 수 있고, 인가코드 추출은 아래 코드로 가능.
-  // const code = new URL(window.location.href).searchParams.get("code");
 
   return (
     <AppScreen backgroundColor={theme.gray[50]}>

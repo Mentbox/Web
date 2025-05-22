@@ -5,6 +5,8 @@ import OutsideClickHandler from "react-outside-click-handler";
 import useDialog from "../../core/hooks/useDialog";
 import { IFile } from "../common/types";
 import DateUtil from "../../../utils/DateUtils";
+import useRemoveFileMutation from "../hooks/mutations/useRemoveFileMutation";
+import useToast from "../../core/hooks/useToast";
 
 type Props = {
   file: IFile;
@@ -14,10 +16,13 @@ function FileCard({ file }: Props) {
   const { id, title, targetDate } = file;
   const { showDialog } = useDialog();
   const { push } = useRouter();
+  const { showToast } = useToast();
 
   const [isVisibleMenu, setVisibleMenu] = useState(false);
   const openMenu = () => setVisibleMenu(true);
   const closeMenu = () => setVisibleMenu(false);
+
+  const removeFile = useRemoveFileMutation();
 
   const handleClick = () => {
     push("FileDetailsScreen", { fileId: id });
@@ -31,6 +36,7 @@ function FileCard({ file }: Props) {
   const handleEditClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.stopPropagation();
     closeMenu();
+    push("WriteFileScreen", { fileId: id });
   };
   const handleRemoveClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.stopPropagation();
@@ -39,7 +45,13 @@ function FileCard({ file }: Props) {
     showDialog({
       title: "파일을 삭제할까요?",
       confirmLabel: "삭제",
-      onConfirm: () => {},
+      onConfirm: () => {
+        removeFile(id, {
+          onSuccess: () => {
+            showToast("파일을 삭제했어요!");
+          },
+        });
+      },
     });
   };
 

@@ -1,0 +1,46 @@
+diff --git a/node_modules/react-calendar/dist/cjs/Calendar.js b/node_modules/react-calendar/dist/cjs/Calendar.js
+index 3127240..c609a06 100644
+--- a/node_modules/react-calendar/dist/cjs/Calendar.js
++++ b/node_modules/react-calendar/dist/cjs/Calendar.js
+@@ -184,8 +184,8 @@ var Calendar = (0, react_1.forwardRef)(function Calendar(props, ref) {
+     var view = getView(viewProps || viewState, minDetail, maxDetail);
+     var views = getLimitedViews(minDetail, maxDetail);
+     var hover = selectRange ? hoverState : null;
+-    var drillDownAvailable = views.indexOf(view) < views.length - 1;
+-    var drillUpAvailable = views.indexOf(view) > 0;
++    var drillDownAvailable = false;
++    var drillUpAvailable = false;
+     var getProcessedValue = (0, react_1.useCallback)(function (value) {
+         var processFunction = (function () {
+             switch (returnValue) {
+diff --git a/node_modules/react-calendar/dist/esm/Calendar.js b/node_modules/react-calendar/dist/esm/Calendar.js
+index 7d5585a..e31c665 100644
+--- a/node_modules/react-calendar/dist/esm/Calendar.js
++++ b/node_modules/react-calendar/dist/esm/Calendar.js
+@@ -179,8 +179,8 @@ var Calendar = forwardRef(function Calendar(props, ref) {
+     var view = getView(viewProps || viewState, minDetail, maxDetail);
+     var views = getLimitedViews(minDetail, maxDetail);
+     var hover = selectRange ? hoverState : null;
+-    var drillDownAvailable = views.indexOf(view) < views.length - 1;
+-    var drillUpAvailable = views.indexOf(view) > 0;
++    var drillDownAvailable = false;
++    var drillUpAvailable = false;
+     var getProcessedValue = useCallback(function (value) {
+         var processFunction = (function () {
+             switch (returnValue) {
+diff --git a/node_modules/react-calendar/src/Calendar.tsx b/node_modules/react-calendar/src/Calendar.tsx
+index a9aa674..98cd5b9 100644
+--- a/node_modules/react-calendar/src/Calendar.tsx
++++ b/node_modules/react-calendar/src/Calendar.tsx
+@@ -716,9 +716,9 @@ const Calendar: React.ForwardRefExoticComponent<CalendarProps & React.RefAttribu
+ 
+     const hover = selectRange ? hoverState : null;
+ 
+-    const drillDownAvailable = views.indexOf(view) < views.length - 1;
++    const drillDownAvailable = false;
+ 
+-    const drillUpAvailable = views.indexOf(view) > 0;
++    const drillUpAvailable = false;
+ 
+     const getProcessedValue = useCallback(
+       (value: Date) => {

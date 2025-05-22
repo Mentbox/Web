@@ -1,6 +1,4 @@
-import withAsyncBoundary from "../../core/modules/AsyncBoundary/hoc";
 import useFilesSuspenseQuery from "../hooks/queries/useFilesSuspenseQuery";
-
 import FileCard from "./FileCard";
 
 function FileList() {
@@ -15,4 +13,4 @@ function FileList() {
   );
 }
 
-export default withAsyncBoundary(FileList);
+export default FileList;

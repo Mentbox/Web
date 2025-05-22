@@ -94,14 +94,17 @@ export const files = [
       materials: materials.map((m, idx) => ({ ...m, id: idx + 1 })),
     });
   }),
-  http.post<never, CreateFileParams, IFile>(API_URI, async ({ request }) => {
-    const { title, targetDate, materials } = await request.json();
+  http.delete<
+    {
+      fileId: string;
+    },
+    never,
+    null
+  >(API_URI + "/:fileId", ({ params }) => {
+    const target = mocks.find((f) => f.id === Number(params.fileId));
 
-    return HttpResponse.json({
-      id: 1,
-      title,
-      targetDate,
-      materials: materials.map((m, idx) => ({ ...m, id: idx + 1 })),
-    });
+    if (!target) return new HttpResponse(null, { status: 404 });
+
+    return HttpResponse.json<null>(null);
   }),
 ];

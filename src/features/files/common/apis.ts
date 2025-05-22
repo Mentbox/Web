@@ -32,3 +32,9 @@ export async function updateFile(params: UpdateFileParams) {
 
   return res;
 }
+
+export async function removeFile(fileId: number) {
+  const res = await client.delete<null>(`${fileId}`).json();
+
+  return res;
+}

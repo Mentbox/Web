@@ -1,6 +1,7 @@
 import WriteFileMaterialCard from "./WriteFileMaterialCard";
 import { IMaterial } from "../common/types";
 import { produce } from "immer";
+import { Button } from "../../../components/Button";
 
 type Props = {
   materials: IMaterial[];
@@ -74,10 +75,9 @@ function WriteFileMaterialList({ materials, setMaterials }: Props) {
         })}
       </div>
 
-      {/** @todo Btn으로 교체 */}
-      <button onClick={addMaterial} className="bg-blue-100 p-5">
+      <Button onClick={addMaterial} variant="outline" className="w-full!">
         리스트 추가
-      </button>
+      </Button>
     </section>
   );
 }

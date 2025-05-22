@@ -1,5 +1,9 @@
 import { http, HttpResponse } from "msw";
-import { CreateFileParams, IFile } from "../features/files/common/types";
+import {
+  CreateFileParams,
+  IFile,
+  UpdateFileParams,
+} from "../features/files/common/types";
 
 const END_POINT = import.meta.env.VITE_API_END_POINT;
 
@@ -70,5 +74,34 @@ export const files = [
     if (!target) return new HttpResponse(null, { status: 404 });
 
     return HttpResponse.json<IFile>(target);
+  }),
+  http.put<
+    {
+      fileId: string;
+    },
+    UpdateFileParams,
+    IFile
+  >(API_URI + "/:fileId", async ({ params, request }) => {
+    const { title, targetDate, materials } = await request.json();
+
+    const target = mocks.find((f) => f.id === Number(params.fileId));
+    if (!target) return new HttpResponse(null, { status: 404 });
+
+    return HttpResponse.json<IFile>({
+      id: Number(params.fileId),
+      title,
+      targetDate,
+      materials: materials.map((m, idx) => ({ ...m, id: idx + 1 })),
+    });
+  }),
+  http.post<never, CreateFileParams, IFile>(API_URI, async ({ request }) => {
+    const { title, targetDate, materials } = await request.json();
+
+    return HttpResponse.json({
+      id: 1,
+      title,
+      targetDate,
+      materials: materials.map((m, idx) => ({ ...m, id: idx + 1 })),
+    });
   }),
 ];

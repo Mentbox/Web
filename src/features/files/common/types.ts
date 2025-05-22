@@ -17,3 +17,7 @@ export type IFile = {
   targetDate: string;
   materials: Array<IMaterial & { id: number }>;
 };
+
+export type UpdateFileParams = CreateFileParams & {
+  fileId: number;
+};

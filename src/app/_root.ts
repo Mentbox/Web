@@ -7,6 +7,9 @@ import { historySyncPlugin } from "@stackflow/plugin-history-sync";
 import FilesScreen from "./files";
 import WriteFileScreen from "./files/write";
 import FileDetailsScreen from "./files/[fileId]";
+import ProfileScreen from "./profile";
+import LoginScreen from "./SignIn/login";
+import AuthCallback from "./SignIn/auth";
 
 export type TypeActivities = typeof activities;
 
@@ -21,6 +24,9 @@ export const { Stack, activities } = stackflow({
     FilesScreen,
     WriteFileScreen,
     FileDetailsScreen,
+    ProfileScreen,
+    LoginScreen,
+    AuthCallback,
   },
   plugins: [
     basicRendererPlugin(),
@@ -33,6 +39,9 @@ export const { Stack, activities } = stackflow({
         FilesScreen: "/files",
         WriteFileScreen: "/files/write",
         FileDetailsScreen: "/files/:fileId",
+        ProfileScreen: "/profile",
+        LoginScreen: "/login",
+        AuthCallback: "/auth",
       },
       fallbackActivity: () => "HomeScreen",
     }),

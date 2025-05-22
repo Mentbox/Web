@@ -33,7 +33,7 @@ export const Button = ({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`w-[327px] h-[52px] text-[1.125rem] leading-[1.05] rounded-md font-medium transition duration-150 ease-in-out ${variantClass} ${disabledClass} ${className}`}
+      className={`h-[52px] text-[1.125rem] leading-[1.05] rounded-md font-medium transition duration-150 ease-in-out ${variantClass} ${disabledClass} ${className}`}
     >
       {children}
     </button>

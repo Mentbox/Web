@@ -2,57 +2,65 @@ import { AppScreen } from "@stackflow/plugin-basic-ui";
 import { ActivityComponentType } from "@stackflow/react";
 import Header from "../../components/Header";
 import WriteFileDateSelector from "../../features/files/modules/WriteFileDateSelector";
-import { useState } from "react";
 import WriteFileTitleForm from "../../features/files/modules/WriteFileTitleForm";
 import WriteFileMaterialList from "../../features/files/modules/WriteFileMaterialList";
 import useCreateFileMutation from "../../features/files/hooks/mutations/useCreateFileMutation";
 import DateUtil from "../../utils/DateUtils";
 import useToast from "../../features/core/hooks/useToast";
 import { useRouter } from "../_root";
+import useFileForm from "../../features/files/hooks/useFileForm";
+import useUpdateFileMutation from "../../features/files/hooks/mutations/useUpdateFileMutation";
 
-const WriteFileScreen: ActivityComponentType = () => {
+type Params = {
+  fileId?: number;
+};
+
+const WriteFileScreen: ActivityComponentType<Params> = ({
+  params,
+}: {
+  params: Params;
+}) => {
+  const { fileId } = params;
   const { pop } = useRouter();
   const { showToast } = useToast();
 
   const createFile = useCreateFileMutation();
+  const updateFile = useUpdateFileMutation();
 
-  const [form, setForm] = useState<{
-    title: string;
-    date: Date | null;
-    materials: Array<{
-      title: string;
-      content: string;
-      keywords: string[];
-      limitedTime: string;
-    }>;
-  }>({
-    title: "",
-    date: null,
-    materials: [],
-  });
-  const disabled = !form.title || !form.date;
-
-  const updateForm = <T extends keyof typeof form>(
-    key: T,
-    value: (typeof form)[T]
-  ) => {
-    setForm((prev) => ({ ...prev, [key]: value }));
-  };
+  const { form, disabled, updateForm } = useFileForm(fileId);
 
   const handleConfirm = () => {
     const { title, date, materials } = form;
-
     if (!title || !date) return;
 
-    createFile(
-      { title, targetDate: DateUtil.format(date), materials },
-      {
-        onSuccess: () => {
-          showToast("파일을 만들었어요!");
-          pop();
+    const isEdit = !!fileId;
+
+    if (isEdit) {
+      updateFile(
+        {
+          fileId,
+          title,
+          targetDate: DateUtil.format(date),
+          materials,
         },
-      }
-    );
+        {
+          onSuccess: () => {
+            showToast("파일을 수정했어요!");
+            pop();
+          },
+        }
+      );
+    } else {
+      createFile(
+        { title, targetDate: DateUtil.format(date), materials },
+        {
+          onSuccess: () => {
+            showToast("파일을 만들었어요!");
+            pop();
+          },
+        }
+      );
+    }
   };
 
   return (

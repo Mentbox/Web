@@ -21,10 +21,12 @@ export const Button = ({
     variant === "primary"
       ? "bg-[var(--color-primary)] text-white hover:bg-[var(--color-blue-400)]"
       : variant === "outline"
-        ? "bg-[var(--color-blue-50)] border border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-blue-75)]"
-        : "";
+      ? "bg-[var(--color-blue-50)] border border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-blue-75)]"
+      : "";
 
-  const disabledClass = disabled ? "opacity-50 cursor-not-allowed bg-[var(--color-blue-75)] text-white" : "";
+  const disabledClass = disabled
+    ? "opacity-50 cursor-not-allowed bg-[var(--color-blue-75)] text-white"
+    : "";
 
   return (
     <button

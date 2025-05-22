@@ -18,3 +18,9 @@ export async function createFile(params: CreateFileParams) {
 
   return res;
 }
+
+export async function getFile(fileId: number) {
+  const res = await client.get<IFile>(`${fileId}`).json();
+
+  return res;
+}

@@ -5,6 +5,7 @@ import getTheme from "../../common/styles/theme";
 import { useRouter } from "../_root";
 import FileList from "../../features/files/modules/FileList";
 import AsyncBoundary from "../../features/core/modules/AsyncBoundary";
+import { Button } from "../../components/Button";
 
 const FilesScreen: ActivityComponentType = () => {
   const theme = getTheme();
@@ -26,10 +27,9 @@ const FilesScreen: ActivityComponentType = () => {
         </main>
 
         <section className="px-[16px] py-[16px] pb-[40px] flex flex-col">
-          {/** @todo Btn 컴포넌트로 교체  */}
-          <button onClick={handleCreateClick} className="bg-primary p-5">
+          <Button onClick={handleCreateClick} className="w-full!">
             파일 추가
-          </button>
+          </Button>
         </section>
       </div>
     </AppScreen>

@@ -10,6 +10,7 @@ import useToast from "../../features/core/hooks/useToast";
 import { useRouter } from "../_root";
 import useFileForm from "../../features/files/hooks/useFileForm";
 import useUpdateFileMutation from "../../features/files/hooks/mutations/useUpdateFileMutation";
+import { Button } from "../../components/Button";
 
 type Params = {
   fileId?: number;
@@ -86,14 +87,13 @@ const WriteFileScreen: ActivityComponentType<Params> = ({
         </main>
 
         <section className="px-[16px] py-[16px] pb-[40px] flex flex-col">
-          {/** @todo Btn 컴포넌트로 교체 */}
-          <button
+          <Button
             onClick={handleConfirm}
             disabled={disabled}
-            className="p-5 bg-primary"
+            className="w-full!"
           >
             저장
-          </button>
+          </Button>
         </section>
       </div>
     </AppScreen>

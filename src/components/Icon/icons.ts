@@ -18,3 +18,5 @@ export { default as 팀플 } from "@icons/팀플.svg?react";
 export { default as 프로젝트 } from "@icons/프로젝트.svg?react";
 export { default as pause } from "@icons/pause.svg?react";
 export { default as play } from "@icons/play.svg?react";
+export { default as check } from "@icons/check.svg?react";
+export { default as invisible } from "@icons/invisible.svg?react";

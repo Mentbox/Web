@@ -13,8 +13,12 @@ function RecordingFileCard({ file }: Props) {
   const { push } = useRouter();
   const theme = getTheme();
 
-  const handleClick = () => {
-    push("RecordingDetailsScreen", { fileId: id });
+  const handleClick = () => {};
+
+  const handlePracticeClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    push("RecordingPracticeScreen", { fileId: id });
   };
 
   return (
@@ -34,9 +38,12 @@ function RecordingFileCard({ file }: Props) {
           </div>
         </div>
 
-        <div className="aspect-square w-[28px] rounded-[4px] bg-blue-50">
+        <button
+          onClick={handlePracticeClick}
+          className="aspect-square w-[28px] rounded-[4px] bg-blue-50"
+        >
           <Icon name="play" size={28} color={theme.blue[300]} />
-        </div>
+        </button>
       </div>
     </div>
   );

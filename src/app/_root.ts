@@ -10,8 +10,8 @@ import FileDetailsScreen from "./files/[fileId]";
 import ProfileScreen from "./profile";
 import LoginScreen from "./SignIn/login";
 import AuthCallback from "./SignIn/auth";
-import RecordingDetailsScreen from "./recordings/[fileId]";
 import RecordingsScreen from "./recordings";
+import RecordingPracticeScreen from "./recordings/[fileId]/practice";
 
 export type TypeActivities = typeof activities;
 
@@ -30,7 +30,7 @@ export const { Stack, activities } = stackflow({
     LoginScreen,
     AuthCallback,
     RecordingsScreen,
-    RecordingDetailsScreen,
+    RecordingPracticeScreen,
   },
   plugins: [
     basicRendererPlugin(),
@@ -47,7 +47,7 @@ export const { Stack, activities } = stackflow({
         LoginScreen: "/login",
         AuthCallback: "/auth",
         RecordingsScreen: "/recordings",
-        RecordingDetailsScreen: "/recordings/:fileId",
+        RecordingPracticeScreen: "/recordings/:fileId/practice",
       },
       fallbackActivity: () => "HomeScreen",
     }),

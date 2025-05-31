@@ -1,26 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Icon from "../../../components/Icon";
 import getTheme from "../../../common/styles/theme";
-import useFileSuspenseQuery from "../../files/hooks/queries/useFileSuspenseQuery";
+import { IMaterial } from "../../files/common/types";
 
 type Props = {
-  fileId: number;
+  title: string;
+  material: IMaterial;
 };
 
-function RecordingPracticeMaterialViewer({ fileId }: Props) {
+function RecordingPracticeMaterialViewer({ title, material }: Props) {
+  const { title: materialTitle, keywords, content } = material;
   const theme = getTheme();
-  const { file } = useFileSuspenseQuery(fileId);
-
-  const { keywords, title, content } = file.materials[0];
 
   const [isVisibleKeywords, setVisibleKeywords] = useState(false);
   const toggleKeywords = () => setVisibleKeywords((prev) => !prev);
   const [isVisibleContent, setVisibleContent] = useState(false);
   const toggleContent = () => setVisibleContent((prev) => !prev);
 
+  useEffect(() => {
+    setVisibleKeywords(false);
+    setVisibleContent(false);
+  }, [material]);
+
   return (
     <div className="flex flex-col gap-[8px]">
-      <h1 className="h1">{file.title}</h1>
+      <h1 className="h1">{title}</h1>
 
       <div className="flex flex-col p-[16px] gap-[12px] bg-white rounded-[8px] shadow-white">
         <div className="flex items-center justify-between">
@@ -58,7 +62,7 @@ function RecordingPracticeMaterialViewer({ fileId }: Props) {
         <div className="flex items-center justify-between">
           <span className="w-[61px]" />
 
-          <h2 className="b1">{title}</h2>
+          <h2 className="b1">{materialTitle}</h2>
 
           <button
             onClick={toggleContent}

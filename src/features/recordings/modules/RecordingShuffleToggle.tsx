@@ -1,13 +1,24 @@
-import { useState } from "react";
 import Icon from "../../../components/Icon";
 
-function RecordingPracticeShuffleToggle() {
-  const [isShuffle, setShuffle] = useState(true);
+type Props = {
+  isShuffle: boolean;
+  toggleShuffle: () => void;
+  disabled: boolean;
+};
 
-  const toggle = () => setShuffle((prev) => !prev);
-
+function RecordingPracticeShuffleToggle({
+  isShuffle,
+  toggleShuffle,
+  disabled,
+}: Props) {
   return (
-    <button onClick={toggle} className="flex flex-col items-start gap-[2px]">
+    <button
+      onClick={toggleShuffle}
+      disabled={disabled}
+      className={`${
+        disabled && "opacity-40"
+      } flex flex-col items-start gap-[2px] duration-150`}
+    >
       <div className="flex items-center gap-[4px]">
         {isShuffle ? (
           <span className="bg-green-300 aspect-square w-[16px] h-[16px] rounded-[1.6px]">

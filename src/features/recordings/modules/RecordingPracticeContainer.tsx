@@ -6,13 +6,18 @@ import RecordingPracticeShuffleToggle from "./RecordingShuffleToggle";
 import useRecordingPractice from "../hooks/useRecordingPractice";
 import useDialog from "../../core/hooks/useDialog";
 import { useState } from "react";
+import { useRouter } from "@/src/app/_root";
+import useToast from "../../core/hooks/useToast";
 
 type Props = {
   fileId: number;
 };
 
 function RecordingPracticeContainer({ fileId }: Props) {
+  const { replace } = useRouter();
   const { showDialog } = useDialog();
+  const { showToast } = useToast();
+
   const {
     file: { title, materials },
   } = useFileSuspenseQuery(fileId);
@@ -31,12 +36,15 @@ function RecordingPracticeContainer({ fileId }: Props) {
   };
 
   const handleNext = () => {
+    if (!isRecording) return showToast("재생 버튼을 눌러주세요!");
     if (!isLast) return next();
 
     showDialog({
       title: "연습을 마칠까요?",
       confirmLabel: "종료",
-      onConfirm: () => {},
+      onConfirm: () => {
+        replace("RecordingResultScreen", { fileId });
+      },
     });
   };
 

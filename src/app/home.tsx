@@ -7,6 +7,7 @@ import { useFlow } from "@stackflow/react/future";
 import HomeSubTitle from "../features/home/modules/HomeSubTitle";
 import HomeFileList from "../features/home/modules/HomeFileList";
 import HomeUserHeader from "../features/home/modules/HomeUserHeader";
+import HomeRecordingList from "../features/home/modules/HomeRecordingList";
 
 const HomeScreen: ActivityComponentType = () => {
   const theme = getTheme();
@@ -29,13 +30,8 @@ const HomeScreen: ActivityComponentType = () => {
 
         {/* 최근 기록 */}
         <div className="flex flex-col gap-[20px] items-baseline">
-          <HomeSubTitle onClick={() => push("FilesScreen", {})}>
-            최근 기록
-          </HomeSubTitle>
-          <main className="flex flex-col gap-[8px] w-full">
-            <button className="h-[94px] w-full bg-white rounded-xl">1</button>
-            <button className="h-[94px] w-full bg-white rounded-xl">2</button>
-          </main>
+          <HomeSubTitle>최근 기록</HomeSubTitle>
+          <HomeRecordingList />
         </div>
 
         <Button>연습 시작하기</Button>

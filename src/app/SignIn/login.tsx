@@ -2,8 +2,8 @@ import { AppScreen } from "@stackflow/plugin-basic-ui";
 import { ActivityComponentType } from "@stackflow/react";
 import getTheme from "../../common/styles/theme";
 import Logo from "../../components/Logo";
-import SocialKakao from "./SocialKakao";
-import SocialApple from "./SocialApple";
+import SocialKakao from "../../features/login/modules/SocialKakao";
+import SocialGoogle from "../../features/login/modules/SocialGoogle";
 
 const LoginScreen: ActivityComponentType = () => {
   const theme = getTheme();
@@ -17,7 +17,7 @@ const LoginScreen: ActivityComponentType = () => {
         </div>
         <main className="flex flex-col gap-[24px]">
           <SocialKakao />
-          <SocialApple />
+          <SocialGoogle />
         </main>
       </div>
     </AppScreen>

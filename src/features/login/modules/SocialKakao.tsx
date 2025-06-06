@@ -1,4 +1,4 @@
-import LoginButton from "../../components/LoginButton";
+import LoginButton from "../../../components/LoginButton";
 import kakao from "@icons/kakao.svg";
 
 // 카카오 로그인

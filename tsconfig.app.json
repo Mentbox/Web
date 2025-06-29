@@ -23,6 +23,7 @@
     "noUncheckedSideEffectImports": true,
 
     "paths": {
+      "@/*": ["./*"],
       "@icons/*": ["./src/assets/icons/*"],
       "@images/*": ["./src/assets/images/*"]
     }

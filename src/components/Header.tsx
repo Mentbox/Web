@@ -7,7 +7,7 @@ type Props = {
 
 function HeaderArrow({ onBack, title }: Props) {
   return (
-    <header className="z-50 relative h-[62px] flex items px-[16px]">
+    <header className="z-50 relative h-[62px] flex items px-[16px] shrink-0">
       <Back onClick={onBack} />
 
       {title && (

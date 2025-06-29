@@ -1,5 +1,7 @@
 import { AppScreen } from "@stackflow/plugin-basic-ui";
 import { ActivityComponentType } from "@stackflow/react";
+import { Button } from "../components/Button";
+import { useRouter } from "./_root";
 import getTheme from "../common/styles/theme";
 import Logo from "../components/Logo";
 import { Button } from "../components/Button";

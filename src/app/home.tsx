@@ -1,19 +1,17 @@
 import { AppScreen } from "@stackflow/plugin-basic-ui";
 import { ActivityComponentType } from "@stackflow/react";
 import { Button } from "../components/Button";
-import { useRouter } from "./_root";
 import getTheme from "../common/styles/theme";
 import Logo from "../components/Logo";
-import { Button } from "../components/Button";
-import { useFlow } from "@stackflow/react/future";
 import HomeSubTitle from "../features/home/modules/HomeSubTitle";
 import HomeFileList from "../features/home/modules/HomeFileList";
 import HomeUserHeader from "../features/home/modules/HomeUserHeader";
 import HomeRecordingList from "../features/home/modules/HomeRecordingList";
+import { useRouter } from "./_root";
 
 const HomeScreen: ActivityComponentType = () => {
   const theme = getTheme();
-  const { push } = useFlow();
+  const { push } = useRouter();
 
   return (
     <AppScreen backgroundColor={theme.gray[50]}>
@@ -36,7 +34,9 @@ const HomeScreen: ActivityComponentType = () => {
           <HomeRecordingList />
         </div>
 
-        <Button>연습 시작하기</Button>
+        <Button onClick={() => push("RecordingsScreen", {})}>
+          연습 시작하기
+        </Button>
       </div>
     </AppScreen>
   );

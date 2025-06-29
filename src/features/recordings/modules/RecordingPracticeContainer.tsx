@@ -5,9 +5,9 @@ import { Button } from "@/src/components/Button";
 import RecordingPracticeShuffleToggle from "./RecordingShuffleToggle";
 import useRecordingPractice from "../hooks/useRecordingPractice";
 import useDialog from "../../core/hooks/useDialog";
-import { useState } from "react";
 import { useRouter } from "@/src/app/_root";
 import useToast from "../../core/hooks/useToast";
+import useRecorder from "../hooks/useRecorder";
 
 type Props = {
   fileId: number;
@@ -22,13 +22,20 @@ function RecordingPracticeContainer({ fileId }: Props) {
     file: { title, materials },
   } = useFileSuspenseQuery(fileId);
 
-  const [isRecording, setRecording] = useState(false);
+  const { isRecording, startRecording, stopRecording } = useRecorder({
+    onRecordingComplete: (file) => {
+      replace("RecordingResultScreen", {
+        fileId,
+        voiceFile: new File([file], "voice.mp3"),
+      });
+    },
+  });
   const { isShuffle, toggleShuffle, currentIndex, isLast, next } =
     useRecordingPractice(materials.length);
   const material = materials[currentIndex];
 
   const handlePlay = () => {
-    setRecording(true);
+    startRecording();
   };
 
   const handleTimeOut = () => {
@@ -43,7 +50,7 @@ function RecordingPracticeContainer({ fileId }: Props) {
       title: "연습을 마칠까요?",
       confirmLabel: "종료",
       onConfirm: () => {
-        replace("RecordingResultScreen", { fileId });
+        stopRecording();
       },
     });
   };

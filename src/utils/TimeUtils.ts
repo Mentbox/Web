@@ -27,6 +27,13 @@ class _TimeUtil {
 
     return this.format(_minutes, _seconds);
   };
+  formatDuration = (seconds: number) => {
+    const minutes = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    const paddedMinutes = String(minutes).padStart(2, "0");
+    const paddedSeconds = String(secs).padStart(2, "0");
+    return `${paddedMinutes}:${paddedSeconds}`;
+  };
 }
 
 const TimeUtil = new _TimeUtil();

@@ -1,9 +1,13 @@
 import { Button } from "@/src/components/Button";
 
-function RecordingSaveBtn() {
+type Props = {
+  onClick: () => void;
+};
+
+function RecordingSaveBtn({ onClick }: Props) {
   return (
     <section className="flex flex-col gap-[4px]">
-      <Button>저장</Button>
+      <Button onClick={onClick}>저장</Button>
     </section>
   );
 }

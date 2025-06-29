@@ -7,10 +7,13 @@ import RecordingSaveBtn from "@/src/features/recordings/modules/RecordingSaveBtn
 import RecordingScoresSelector from "@/src/features/recordings/modules/RecordingScoresSelector";
 import { AppScreen } from "@stackflow/plugin-basic-ui";
 import { ActivityComponentType } from "@stackflow/react";
+import { useState } from "react";
 
 type Params = {
   fileId: number;
 };
+
+const INITIAL_SCORE = 50;
 
 const RecordingResultScreen: ActivityComponentType<Params> = ({
   params,
@@ -18,6 +21,25 @@ const RecordingResultScreen: ActivityComponentType<Params> = ({
   params: Params;
 }) => {
   const { fileId } = params;
+
+  const [form, setForm] = useState<{
+    content: string;
+    memoryScore: number;
+    pronunciationScore: number;
+    toneScore: number;
+  }>({
+    content: "",
+    memoryScore: INITIAL_SCORE,
+    pronunciationScore: INITIAL_SCORE,
+    toneScore: INITIAL_SCORE,
+  });
+
+  const handleChangeForm = <T extends keyof typeof form>(
+    key: T,
+    value: (typeof form)[T]
+  ) => {
+    setForm((prev) => ({ ...prev, [key]: value }));
+  };
 
   return (
     <AppScreen>
@@ -30,9 +52,25 @@ const RecordingResultScreen: ActivityComponentType<Params> = ({
 
             <RecordingDetailsPlayer />
 
-            <RecordingFeedbackForm />
+            <RecordingFeedbackForm
+              content={form.content}
+              onChange={(content) => handleChangeForm("content", content)}
+            />
 
-            <RecordingScoresSelector />
+            <RecordingScoresSelector
+              memoryScore={form.memoryScore}
+              pronunciationScore={form.pronunciationScore}
+              toneScore={form.toneScore}
+              onChangeMemoryScore={(memoryScore) =>
+                handleChangeForm("memoryScore", memoryScore)
+              }
+              onChangePronunciationScore={(pronunciationScore) =>
+                handleChangeForm("pronunciationScore", pronunciationScore)
+              }
+              onChangeToneScore={(toneScore) =>
+                handleChangeForm("toneScore", toneScore)
+              }
+            />
           </main>
 
           <div className="p-[16px] pt-0">

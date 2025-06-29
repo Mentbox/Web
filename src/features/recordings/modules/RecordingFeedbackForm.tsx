@@ -1,6 +1,11 @@
 import TextAreaAutoSize from "react-textarea-autosize";
 
-function RecordingFeedbackForm() {
+type Props = {
+  content: string;
+  onChange: (content: string) => void;
+};
+
+function RecordingFeedbackForm({ content, onChange }: Props) {
   return (
     <section className="flex flex-col gap-[8px]">
       <h1 className="b1">피드백</h1>
@@ -11,6 +16,8 @@ function RecordingFeedbackForm() {
           className="bg-gray-50 rounded-[8px] px-[16px] py-[12px] shadow-white label placeholder:text-gray-500 outline-none resize-none"
           minRows={4}
           maxLength={500}
+          value={content}
+          onChange={(e) => onChange(e.target.value)}
         />
       </div>
     </section>

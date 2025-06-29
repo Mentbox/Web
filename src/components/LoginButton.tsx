@@ -1,4 +1,4 @@
-type Props = React.PropsWithChildren <{
+type Props = React.PropsWithChildren<{
   onClick?: () => void;
   className?: string;
   color?: string;
@@ -12,7 +12,6 @@ export const LoginButton = ({
   color = "",
   src = "",
 }: Props) => {
-
   return (
     <button
       onClick={onClick}
@@ -21,9 +20,9 @@ export const LoginButton = ({
       style={{ backgroundColor: color }}
     >
       <img src={src} width={18} className="absolute left-[40px]" />
-      <span className={`text-[15px] ${color === "#000000" ? "text-white" : "text-black"}`}>{children}</span>
+      <span className={`text-[15px] text-black`}>{children}</span>
     </button>
   );
-}
+};
 
 export default LoginButton;

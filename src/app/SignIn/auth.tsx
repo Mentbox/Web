@@ -23,7 +23,7 @@ const AuthCallback: ActivityComponentType = () => {
           // 토큰 저장 및 리디렉션
           localStorage.setItem("accessToken", data.accessToken);
           localStorage.setItem("refreshToken", data.refreshToken);
-          replace("HomeScreen", {});
+          replace("SignInScreen", {});
         } catch (err) {
           console.error("카카오 로그인 실패", err);
         }

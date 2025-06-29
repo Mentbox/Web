@@ -1,4 +1,4 @@
-import LoginButton from "../../components/LoginButton";
+import LoginButton from "../../../components/LoginButton";
 import apple from "@icons/apple.svg";
 
 interface ClientConfig {
